@@ -1,6 +1,12 @@
 <?xml version="1.0"?>
 <!--
   ~ @package   MagicEraser
+  ~ @copyright Copyright (c)2024 Akeeba Ltd
+  ~ @license   GNU General Public License version 3, or later
+  -->
+
+<!--
+  ~ @package   MagicEraser
   ~ @copyright Copyright (c)2021-2024 Akeeba Ltd
   ~ @license   GNU General Public License version 3, or later
   -->
@@ -12,17 +18,10 @@
   -->
 
 <project name="MagicEraser" description="Magic Eraser" default="git" >
-	<import file="${phing.dir}/../../buildfiles/phing/common.xml" />
+	<import file="${phing.dir}/../buildfiles/phing/common.xml" />
 
 	<!-- Default properties, set only if not already assigned in the build.properties file -->
 	<property name="dirs.library" value="${dirs.root}/file_magiceraser" />
-
-	<target name="all" description="Makes everything"
-			depends="git">
-	</target>
-
-	<target name="documentation" description="No documentation in the repository">
-	</target>
 
 	<target name="git" description="Makes only the library package"
 			depends="new-release,setup-properties,library-package">
@@ -31,7 +30,7 @@
 	<target name="library-package" description="Magic Eraser package"
 			depends="new-release,setup-properties">
 
-		<copy file="templates/file_magiceraser.xml" tofile="${dirs.root}/file_magiceraser.xml" overwrite="true">
+		<copy file="${dirs.templates}/file_magiceraser.xml" tofile="${dirs.root}/file_magiceraser.xml" overwrite="true">
 			<filterchain>
 				<replacetokens begintoken="##" endtoken="##">
 					<token key="DATE" value="${build.date}" />
